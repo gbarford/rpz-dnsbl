@@ -35,13 +35,14 @@ for intelList in config['intelUrls']:
 
 rpzZone="$TTL " + str(config['rpzTTL']) + "\n"
 rpzZone+="@    SOA "
-count=1
-for nameserver in config['blocklistDnsServers']:
-   rpzZone+="ns" + str(count) + "." + config['blocklistName'] + ". "
-   count+=1
+rpzZone+="localhost ns1." + config['blocklistName'] + ". "
 rpzZone+=" ( " + str(serialNumber) + " " + str(config['rpzRefresh'])
 rpzZone+=" " + str(config['rpzRetry']) + " " + str(config['rpzExpiry']) + " " + str(config['rpzNxDomainTTL']) + " )\n"
-rpzZone+="     NS ns." + config['rpzListName'] + ".\n\n"
+
+count=1
+for nameserver in config['blocklistDnsServers']:
+   rpzZone+="     NS ns" + str(count) + "." + config['blocklistName'] + ".\n"
+   count+=1
 
 for maliciousDomain in setOfMaliciousDomains:
    rpzZone+="*." + maliciousDomain + "    IN CNAME " + config['rpzCnameTo'] + "\n" 

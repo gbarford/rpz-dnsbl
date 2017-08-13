@@ -1,0 +1,20 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+
+zone "rpz.zone" {
+    type master;
+    file "/etc/bind/rpz.zone";
+    also-notify { 192.168.0.117; };
+    allow-transfer { 192.168.0.117; };
+};
+
+zone "blocklist.block" {
+    type master;
+    file "/etc/bind/blocklist.block";
+};
