@@ -8,8 +8,8 @@ from config import config
 setOfMaliciousDomains=set()
 rpzZone=""
 
-blocklistZoneFilePath=os.path.join(config['bindZoneFilePath'],config['blocklistName'])
-rpzZoneFilePath=os.path.join(config['bindZoneFilePath'],config['rpzListName'])
+blocklistZoneFilePath=os.path.join(config['bindZoneFilePath'],config['blocklistName']+"-new")
+rpzZoneFilePath=os.path.join(config['bindZoneFilePath'],config['rpzListName']+"-new")
 
 if os.path.isfile('serialnumber'):
    with open('serialnumber') as serialNumberFile:
